@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <title>soym</title>
+</head>
+
+<body>
+    <div id="note" style="color:white;font-size: 1.5rem"></div>
+    <div id="note2" style="color:white;font-size: 1.5rem"></div>
+
+    <script src="./rgbaster.js"></script>
+    <script>
+        var img = './demo.png'
+        var img_obj = document.createElement("img")
+        img_obj.style.position = 'fixed'
+        img_obj.style.top = "20%"
+        img_obj.style.left = "20%"
+        img_obj.src = img
+        document.body.appendChild(img_obj)
+
+        RGBaster.colors(img, {
+            success: function (payload) {
+                document.body.style.backgroundColor = payload.dominant;
+                document.getElementById("note").innerText = "extract dominant-color: " + payload.dominant
+                document.getElementById("note2").innerText = "extract secondary-color: " + payload.secondary
+
+                // You now have the payload.
+                // console.log(payload.dominant);
+                // console.log(payload.secondary);
+                console.log(payload.palette);
+            }
+        });
+    </script>
+</body>
+
+</html>
